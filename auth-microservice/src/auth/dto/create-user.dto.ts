@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsObject, IsString, ValidateNested } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
 
 class LocationDto {

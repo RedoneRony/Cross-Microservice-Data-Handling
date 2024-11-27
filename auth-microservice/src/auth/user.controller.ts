@@ -11,4 +11,9 @@ export class UserController {
     async createUserWithLocation(@Body() createUserDto: CreateUserDto) {
         return this.userService.createUserWithLocation(createUserDto);
     }
+
+    @Post('/user')
+    async createUser(@Body() createUserDto: CreateUserDto) {
+        return this.userService.createUser(createUserDto);
+    }
 }

@@ -32,20 +32,16 @@ import { UserController } from './auth/user.controller';
 
     // Register User entity repository
     TypeOrmModule.forFeature([User]),
-
-    // Configure Redis client with explicit host and port
-    ClientsModule.registerAsync([
+    
+    // register redis
+    ClientsModule.register([
       {
-        imports: [ConfigModule],
-        inject: [ConfigService],
         name: 'LOCATION_SERVICE',
-        useFactory: (configService: ConfigService) => ({
-          transport: Transport.REDIS,
-          options: {
-            host: configService.get<string>('REDIS_HOST'),
-            port: configService.get<number>('REDIS_PORT'),
-          },
-        }),
+        transport: Transport.REDIS,
+        options: {
+          host: process.env.REDIS_HOST || 'localhost',
+          port: Number(process.env.REDIS_PORT) || 6379,
+        },
       },
     ]),
   ],
